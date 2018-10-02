@@ -129,6 +129,7 @@ func (d *GobusterDNS) GetConfigString() (string, error) {
 	if _, err := fmt.Fprintf(tw, "[+] Domain:\t%s\n", o.Domain); err != nil {
 		return "", err
 	}
+
 	if _, err := fmt.Fprintf(tw, "[+] Threads:\t%d\n", d.globalopts.Threads); err != nil {
 		return "", err
 	}
