@@ -83,7 +83,7 @@ dns         uses dns mode
 -n, --nostatus             Don't print status codes
 -P, --password string      Password for Basic Auth
 -p, --proxy string         Proxy to use for requests [http(s)://host:port]
--s, --statuscodes string   Positive status codes (default "200,204,301,302,307,403")
+-s, --statuscodes string   Positive status codes (default "200,204,301,302,307,401,403")
     --timeout duration     HTTP Timeout (default 10s)
 -u, --url string           The target URL
 -a, --useragent string     Set the User-Agent string (default "gobuster 2.0.1")
@@ -157,7 +157,7 @@ Gobuster v2.0.1              OJ Reeves (@TheColonial)
 [+] Url/Domain   : https://buffered.io/
 [+] Threads      : 10
 [+] Wordlist     : /home/oj/wordlists/shortlist.txt
-[+] Status codes : 200,204,301,302,307,403
+[+] Status codes : 200,204,301,302,307,401,403
 [+] Timeout      : 10s
 =====================================================
 2018/08/27 11:49:43 Starting gobuster
@@ -183,7 +183,7 @@ Gobuster v2.0.1              OJ Reeves (@TheColonial)
 [+] Url/Domain   : https://buffered.io/
 [+] Threads      : 10
 [+] Wordlist     : /home/oj/wordlists/shortlist.txt
-[+] Status codes : 200,204,301,302,307,403
+[+] Status codes : 200,204,301,302,307,401,403
 [+] No status    : true
 [+] Timeout      : 10s
 =====================================================
@@ -210,7 +210,7 @@ Gobuster v2.0.1              OJ Reeves (@TheColonial)
 [+] Url/Domain   : https://buffered.io/
 [+] Threads      : 10
 [+] Wordlist     : /home/oj/wordlists/shortlist.txt
-[+] Status codes : 200,204,301,302,307,403
+[+] Status codes : 200,204,301,302,307,401,403
 [+] Verbose      : true
 [+] Timeout      : 10s
 =====================================================
@@ -239,7 +239,7 @@ Gobuster v2.0.1              OJ Reeves (@TheColonial)
 [+] Url/Domain   : https://buffered.io/
 [+] Threads      : 10
 [+] Wordlist     : /home/oj/wordlists/shortlist.txt
-[+] Status codes : 200,204,301,302,307,403
+[+] Status codes : 200,204,301,302,307,401,403
 [+] Show length  : true
 [+] Timeout      : 10s
 =====================================================
