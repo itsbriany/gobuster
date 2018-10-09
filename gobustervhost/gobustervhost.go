@@ -83,7 +83,7 @@ func (v *GobusterVhost) PreRun() error {
 		return err
 	}
 
-	if bodyBase == bodyGUID {
+	if v.baseResponse == *bodyGUID {
 		log.Printf("[-] Wildcard response found on url %s", v.options.URL)
 		if !v.options.WildcardForced {
 			return fmt.Errorf("To force processing of Wildcard responses, specify the '--wildcard' switch.")
