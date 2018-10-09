@@ -26,13 +26,13 @@ type HTTPClient struct {
 // HTTPOptions provides options to the http client
 type HTTPOptions struct {
 	Proxy          string
-	FollowRedirect bool
-	InsecureSSL    bool
-	Timeout        time.Duration
 	Username       string
 	Password       string
-	IncludeLength  bool
 	UserAgent      string
+	Timeout        time.Duration
+	FollowRedirect bool
+	InsecureSSL    bool
+	IncludeLength  bool
 }
 
 // NewHTTPClient returns a new HTTPClient
