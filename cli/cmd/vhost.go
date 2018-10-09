@@ -119,17 +119,17 @@ func parseVhostOptions() (*libgobuster.Options, *gobustervhost.OptionsVhost, err
 	}
 	plugin.Timeout = timeout
 
+	followredirect, err := cmdDir.Flags().GetBool("followredirect")
+	if err != nil {
+		return nil, nil, fmt.Errorf("invalid value for followredirect: %v", err)
+	}
+	plugin.FollowRedirect = followredirect
+
 	insecuressl, err := cmdVhost.Flags().GetBool("insecuressl")
 	if err != nil {
 		return nil, nil, fmt.Errorf("invalid value for insecuressl: %v", err)
 	}
 	plugin.InsecureSSL = insecuressl
-
-	wildcard, err := cmdVhost.Flags().GetBool("wildcard")
-	if err != nil {
-		return nil, nil, fmt.Errorf("invalid value for wildcard: %v", err)
-	}
-	plugin.WildcardForced = wildcard
 
 	// Prompt for PW if not provided
 	if plugin.Username != "" && plugin.Password == "" {
@@ -164,8 +164,8 @@ func init() {
 	cmdVhost.Flags().StringP("useragent", "a", libgobuster.DefaultUserAgent(), "Set the User-Agent string")
 	cmdVhost.Flags().StringP("proxy", "p", "", "Proxy to use for requests [http(s)://host:port]")
 	cmdVhost.Flags().DurationP("timeout", "", 10*time.Second, "HTTP Timeout")
+	cmdDir.Flags().BoolP("followredirect", "r", true, "Follow redirects")
 	cmdVhost.Flags().BoolP("insecuressl", "k", false, "Skip SSL certificate verification")
-	cmdVhost.Flags().BoolP("wildcard", "", false, "Force continued operation when wildcard found")
 	if err := cmdVhost.MarkFlagRequired("url"); err != nil {
 		log.Fatalf("error on marking flag as required: %v", err)
 	}

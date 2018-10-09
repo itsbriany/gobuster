@@ -14,5 +14,5 @@ type OptionsVhost struct {
 	Cookies        string
 	Timeout        time.Duration
 	InsecureSSL    bool
-	WildcardForced bool
+	FollowRedirect bool
 }

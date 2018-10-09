@@ -5,13 +5,11 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"log"
 	"net/url"
 	"strings"
 	"text/tabwriter"
 
 	"github.com/OJ/gobuster/libgobuster"
-	"github.com/google/uuid"
 )
 
 // GobusterVhost is the main type to implement the interface
@@ -40,7 +38,7 @@ func NewGobusterVhost(cont context.Context, globalopts *libgobuster.Options, opt
 
 	httpOpts := libgobuster.HTTPOptions{
 		Proxy:          opts.Proxy,
-		FollowRedirect: false,
+		FollowRedirect: opts.FollowRedirect,
 		InsecureSSL:    opts.InsecureSSL,
 		Timeout:        opts.Timeout,
 		Username:       opts.Username,
@@ -75,21 +73,6 @@ func (v *GobusterVhost) PreRun() error {
 		return fmt.Errorf("unable to connect to %s: %v", v.options.URL, err)
 	}
 	v.baseResponse = *bodyBase
-
-	guid := uuid.New()
-	subdomain := fmt.Sprintf("%s.%s", guid.String(), v.domain)
-	_, bodyGUID, err := v.http.GetBody(v.options.URL, subdomain, v.options.Cookies)
-	if err != nil {
-		return fmt.Errorf("unable to connect to %s with subdomain %s: %v", v.options.URL, subdomain, err)
-	}
-
-	// check if there is a default VHOST or only a single site
-	if v.baseResponse == *bodyGUID {
-		log.Printf("[-] Wildcard response found on url %s", v.options.URL)
-		if !v.options.WildcardForced {
-			return fmt.Errorf("To force processing of Wildcard responses, specify the '--wildcard' switch.")
-		}
-	}
 	return nil
 }
 
