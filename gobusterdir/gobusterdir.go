@@ -23,7 +23,7 @@ type GobusterDir struct {
 // GetRequest issues a GET request to the target and returns
 // the status code, length and an error
 func (d *GobusterDir) get(url string) (*int, *int64, error) {
-	return d.http.MakeRequest(url, d.options.Cookies)
+	return d.http.Get(url, "", d.options.Cookies)
 }
 
 // NewGobusterDir creates a new initialized GobusterDir
@@ -48,7 +48,6 @@ func NewGobusterDir(cont context.Context, globalopts *libgobuster.Options, opts 
 		Timeout:        opts.Timeout,
 		Username:       opts.Username,
 		Password:       opts.Password,
-		IncludeLength:  opts.IncludeLength,
 		UserAgent:      opts.UserAgent,
 	}
 
@@ -80,7 +79,6 @@ func (d *GobusterDir) PreRun() error {
 	}
 
 	if d.options.StatusCodesParsed.Contains(*wildcardResp) {
-		d.options.IsWildcard = true
 		log.Printf("[-] Wildcard response found: %s => %d", url, *wildcardResp)
 		if !d.options.WildcardForced {
 			return fmt.Errorf("To force processing of Wildcard responses, specify the '--wildcard' switch.")

@@ -24,7 +24,7 @@ func TestMakeRequest(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Got Error: %v", err)
 	}
-	a, b, err := c.MakeRequest(h.URL, "")
+	a, b, err := c.MakeRequest(h.URL, "", "")
 	if err != nil {
 		t.Fatalf("Got Error: %v", err)
 	}
