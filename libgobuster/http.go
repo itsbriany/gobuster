@@ -1,4 +1,4 @@
-package gobusterdir
+package libgobuster
 
 import (
 	"context"
@@ -9,12 +9,12 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 	"unicode/utf8"
-
-	"github.com/OJ/gobuster/libgobuster"
 )
 
-type httpClient struct {
+// HTTPClient represents a http object
+type HTTPClient struct {
 	client        *http.Client
 	context       context.Context
 	userAgent     string
@@ -23,10 +23,22 @@ type httpClient struct {
 	includeLength bool
 }
 
+// HTTPOptions provides options to the http client
+type HTTPOptions struct {
+	Proxy          string
+	FollowRedirect bool
+	InsecureSSL    bool
+	Timeout        time.Duration
+	Username       string
+	Password       string
+	IncludeLength  bool
+	UserAgent      string
+}
+
 // NewHTTPClient returns a new HTTPClient
-func newHTTPClient(c context.Context, opt *OptionsDir) (*httpClient, error) {
+func NewHTTPClient(c context.Context, opt *HTTPOptions) (*HTTPClient, error) {
 	var proxyURLFunc func(*http.Request) (*url.URL, error)
-	var client httpClient
+	var client HTTPClient
 	proxyURLFunc = http.ProxyFromEnvironment
 
 	if opt == nil {
@@ -67,8 +79,8 @@ func newHTTPClient(c context.Context, opt *OptionsDir) (*httpClient, error) {
 	return &client, nil
 }
 
-// MakeRequest makes a request to the specified url
-func (client *httpClient) makeRequest(fullURL, cookie string) (*int, *int64, error) {
+// MakeRequest makes a GET request to the specified url
+func (client *HTTPClient) MakeRequest(fullURL, cookie string) (*int, *int64, error) {
 	req, err := http.NewRequest(http.MethodGet, fullURL, nil)
 
 	if err != nil {
@@ -82,7 +94,7 @@ func (client *httpClient) makeRequest(fullURL, cookie string) (*int, *int64, err
 		req.Header.Set("Cookie", cookie)
 	}
 
-	ua := libgobuster.DefaultUserAgent()
+	ua := DefaultUserAgent()
 	if client.userAgent != "" {
 		ua = client.userAgent
 	}
