@@ -164,7 +164,7 @@ func init() {
 	cmdVhost.Flags().StringP("useragent", "a", libgobuster.DefaultUserAgent(), "Set the User-Agent string")
 	cmdVhost.Flags().StringP("proxy", "p", "", "Proxy to use for requests [http(s)://host:port]")
 	cmdVhost.Flags().DurationP("timeout", "", 10*time.Second, "HTTP Timeout")
-	cmdDir.Flags().BoolP("followredirect", "r", true, "Follow redirects")
+	cmdVhost.Flags().BoolP("followredirect", "r", true, "Follow redirects")
 	cmdVhost.Flags().BoolP("insecuressl", "k", false, "Skip SSL certificate verification")
 	if err := cmdVhost.MarkFlagRequired("url"); err != nil {
 		log.Fatalf("error on marking flag as required: %v", err)
