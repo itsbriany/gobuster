@@ -48,6 +48,7 @@ GOTO Done
 :Darwin
 set GOOS=darwin
 set GOARCH=amd64
+set GO111MODULE=on
 echo Building for %GOOS% %GOARCH% ...
 set DIR=%TARGET%\gobuster-%GOOS%-%GOARCH%
 mkdir %DIR% 2> NUL
@@ -63,6 +64,7 @@ EXIT /B 0
 :Linux
 set GOOS=linux
 set GOARCH=amd64
+set GO111MODULE=on
 echo Building for %GOOS% %GOARCH% ...
 set DIR=%TARGET%\gobuster-%GOOS%-%GOARCH%
 mkdir %DIR% 2> NUL
@@ -78,6 +80,7 @@ EXIT /B 0
 :Windows
 set GOOS=windows
 set GOARCH=amd64
+set GO111MODULE=on
 echo Building for %GOOS% %GOARCH% ...
 set DIR=%TARGET%\gobuster-%GOOS%-%GOARCH%
 mkdir %DIR% 2> NUL
