@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/OJ/gobuster/libgobuster"
+	"github.com/itsbriany/gobuster/libgobuster"
 	"github.com/google/uuid"
 )
 
